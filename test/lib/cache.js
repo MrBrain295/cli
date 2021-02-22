@@ -208,18 +208,11 @@ t.test('cache completion', t => {
   const { completion } = cache
 
   const testComp = (argv, expect) => {
-    completion({ conf: { argv: { remain: argv } } }, (err, res) => {
-      t.ifError(err)
-      t.strictSame(res, expect, argv.join(' '))
-    })
+    const res = completion({ conf: { argv: { remain: argv } } })
+    t.strictSame(res, expect, argv.join(' '))
   }
 
-  testComp(['npm', 'cache'], [
-    'add',
-    'clean',
-    'verify',
-  ])
-
+  testComp(['npm', 'cache'], ['add', 'clean', 'verify'])
   testComp(['npm', 'cache', 'add'], [])
   testComp(['npm', 'cache', 'clean'], [])
   testComp(['npm', 'cache', 'verify'], [])

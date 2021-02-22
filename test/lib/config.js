@@ -610,23 +610,14 @@ t.test('completion', t => {
   const { completion } = config
 
   const testComp = (argv, expect) => {
-    completion({ conf: { argv: { remain: argv } } }, (er, res) => {
-      t.ifError(er)
-      t.strictSame(res, expect, argv.join(' '))
-    })
+    const res = completion({ conf: { argv: { remain: argv } } })
+    t.strictSame(res, expect, argv.join(' '))
   }
 
   testComp(['npm', 'foo'], [])
-  testComp(['npm', 'config'], [
-    'get',
-    'set',
-    'delete',
-    'ls',
-    'rm',
-    'edit',
-    'list',
-  ])
+  testComp(['npm', 'config'], ['get', 'set', 'delete', 'ls', 'rm', 'edit', 'list'])
   testComp(['npm', 'config', 'set', 'foo'], [])
+
   const possibleConfigKeys = [...Object.keys(types)]
   testComp(['npm', 'config', 'get'], possibleConfigKeys)
   testComp(['npm', 'config', 'set'], possibleConfigKeys)
@@ -636,24 +627,8 @@ t.test('completion', t => {
   testComp(['npm', 'config', 'list'], [])
   testComp(['npm', 'config', 'ls'], [])
 
-  completion({
-    conf: {
-      argv: {
-        remain: ['npm', 'config'],
-      },
-    },
-    partialWord: 'l',
-  }, (er, res) => {
-    t.ifError(er)
-    t.strictSame(res, [
-      'get',
-      'set',
-      'delete',
-      'ls',
-      'rm',
-      'edit',
-    ], 'npm config')
-  })
+  const partial = completion({conf: { argv: { remain: ['npm', 'config'] } }, partialWord: 'l'})
+  t.strictSame(partial, ['get', 'set', 'delete', 'ls', 'rm', 'edit'], 'npm config')
 
   t.end()
 })
