@@ -42,7 +42,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@npmcli/arborist": "^2.2.4",
+    "@npmcli/arborist": "^8.0.0",
     "@npmcli/ci-detect": "^1.2.0",
     "@npmcli/config": "^1.2.9",
     "@npmcli/run-script": "^1.8.3",
@@ -66,11 +66,11 @@
     "json-parse-even-better-errors": "^2.3.1",
     "leven": "^3.1.0",
     "libnpmaccess": "^4.0.1",
-    "libnpmdiff": "^2.0.3",
-    "libnpmfund": "^1.0.2",
+    "libnpmdiff": "^7.0.0",
+    "libnpmfund": "^6.0.0",
     "libnpmhook": "^6.0.1",
     "libnpmorg": "^2.0.1",
-    "libnpmpack": "^2.0.1",
+    "libnpmpack": "^8.0.0",
     "libnpmpublish": "^4.0.0",
     "libnpmsearch": "^3.1.0",
     "libnpmteam": "^2.0.2",
